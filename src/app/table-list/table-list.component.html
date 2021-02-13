@@ -6,8 +6,27 @@
                 <div class="card-header card-header-info">
                     <h4 class="card-title mt-0"> Current Outbreaks</h4>
                     <p class="card-category"> across Alberta</p>
+                    <ul class="nav nav-tabs" style="color: black;">
+                        <li class="nav-item">
+                          <button class="nav-link" [ngClass]="{'active': currentZone === 'Edmonton zone'}"  (click)="setVariable('Edmonton zone')">Edmonton</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" [ngClass]="{'active': currentZone === 'North zone'}"  (click)="setVariable('North zone')">North</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" [ngClass]="{'active': currentZone === 'Central zone'}"  (click)="setVariable('Central zone')">Central</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" [ngClass]="{'active': currentZone === 'Calgary zone'}"  (click)="setVariable('Calgary zone')">Calgary</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" [ngClass]="{'active': currentZone === 'South zone'}"  (click)="setVariable('South zone')">South</button>
+                        </li>
+                    </ul>
+
                 </div>
                 <div class="card-body">
+
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="">
@@ -22,7 +41,7 @@
                                 </th>
                             </thead>
                             <tbody *ngFor="let row of Repdata">
-                                <tr>
+                                <tr *ngIf="row.zone == currentZone">
                                     <td>
                                         {{ row.zone }}
                                     </td>
