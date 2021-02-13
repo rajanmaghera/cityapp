@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-table-list',
@@ -7,9 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableListComponent implements OnInit {
 
-  constructor() { }
+  constructor( private http: HttpClient ) { }
+    Repdata;  
+  
+  getEdmontonData() {    
+    this.http.get('https://data.edmonton.ca/resource/2h73-35uw.json').subscribe(data => this.Repdata = data)
+  }
+
 
   ngOnInit() {
+    this.getEdmontonData()
   }
 
 }
