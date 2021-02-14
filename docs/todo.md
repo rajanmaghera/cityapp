@@ -13,6 +13,10 @@ Mongo DB:
 
 - [x] Create connection
 
+Deployment
+
+- [ ] To Heroku
+
 ## Frontend
 
 - [x] Display Table from JSON
