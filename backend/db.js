@@ -1,7 +1,8 @@
 const { MongoClient } = require("mongodb");
+require('dotenv').config()
 
 // Replace the following with your Atlas connection string
-const url = "mongodb+srv://adminUser:somPass123@calhackscluster.fncip.mongodb.net/Test.TestCol?retryWrites=true&w=majority";
+const url = process.env.MONGO_URL;
 const client = new MongoClient(url);
 
 // The database to use
