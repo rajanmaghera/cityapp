@@ -15,28 +15,36 @@ MongoClient.connect(url, {
     useUnifiedTopology: true
   })
   .then(client => {
-      console.log('Connected to Database')
-      const db = client.db(dbName)
-      const someCollection = db.collection(colName)
+    console.log('Connected to Database')
+    const db = client.db(dbName)
+    const someCollection = db.collection(colName)
 
-      app.post('/post', (req, res) => {
-        someCollection.insertOne(req.body)
-          .then(result => {
-            console.log(result)
-          })
-          .catch(error => console.error(error))
-      })
+    app.post('/post', (req, res) => {
+      someCollection.insertOne(req.body)
+        .then(result => {
+          console.log(result)
+        })
+        .catch(error => console.error(error))
+    })
 
-      app.get('/get', (req, res) => {
-        someCollection.find().toArray()
-          .then(results => {
-            console.log(results)
-          })
-          .catch(error => console.error(error))
-      })
-
+    app.get('/get', (req, res) => {
+      someCollection.find().toArray()
+        .then(results => {
+          console.log(results)
+        })
+        .catch(error => console.error(error))
+    })
+    app.delete('/delete', (req, res) => {
+      someCollection.deleteOne({
+          name: req.body.name
+        })
+        .then(result => {
+          res.json('Deleted items')
+        })
+        .catch(error => console.error(error))
+    })
   })
-.catch(error => console.error(error))
+  .catch(error => console.error(error))
 
 app.use(bodyParser.urlencoded({
   extended: true
